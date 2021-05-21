@@ -35,6 +35,8 @@ namespace Geometric_Transformation
             System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series6 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.label1 = new System.Windows.Forms.Label();
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.label2 = new System.Windows.Forms.Label();
@@ -54,8 +56,8 @@ namespace Geometric_Transformation
             this.TranslationRa = new System.Windows.Forms.RadioButton();
             this.ScallingRa = new System.Windows.Forms.RadioButton();
             this.RotationRa = new System.Windows.Forms.RadioButton();
-            this.radioButton4 = new System.Windows.Forms.RadioButton();
-            this.radioButton5 = new System.Windows.Forms.RadioButton();
+            this.ReflectioRa = new System.Windows.Forms.RadioButton();
+            this.ShearingRa = new System.Windows.Forms.RadioButton();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.Tx = new System.Windows.Forms.TextBox();
@@ -66,6 +68,10 @@ namespace Geometric_Transformation
             this.Sy = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.Angle = new System.Windows.Forms.TextBox();
+            this.RefX = new System.Windows.Forms.TextBox();
+            this.RefY = new System.Windows.Forms.TextBox();
+            this.ShearingX = new System.Windows.Forms.TextBox();
+            this.ShearingY = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -82,6 +88,7 @@ namespace Geometric_Transformation
             // 
             // chart1
             // 
+            this.chart1.BackColor = System.Drawing.SystemColors.Window;
             chartArea1.BorderWidth = 10;
             chartArea1.Name = "ChartArea1";
             this.chart1.ChartAreas.Add(chartArea1);
@@ -99,19 +106,29 @@ namespace Geometric_Transformation
             series2.ChartArea = "ChartArea1";
             series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
             series2.Legend = "Legend1";
-            series2.Name = "TranslationSha";
+            series2.Name = "TranslationShap";
             series3.ChartArea = "ChartArea1";
             series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
             series3.Legend = "Legend1";
-            series3.Name = "ScalingSha";
+            series3.Name = "ScalingShap";
             series4.ChartArea = "ChartArea1";
             series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
             series4.Legend = "Legend1";
-            series4.Name = "RotationSha";
+            series4.Name = "RotationShap";
+            series5.ChartArea = "ChartArea1";
+            series5.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series5.Legend = "Legend1";
+            series5.Name = "ReflictionShap";
+            series6.ChartArea = "ChartArea1";
+            series6.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series6.Legend = "Legend1";
+            series6.Name = "ShearingShap";
             this.chart1.Series.Add(series1);
             this.chart1.Series.Add(series2);
             this.chart1.Series.Add(series3);
             this.chart1.Series.Add(series4);
+            this.chart1.Series.Add(series5);
+            this.chart1.Series.Add(series6);
             this.chart1.Size = new System.Drawing.Size(850, 494);
             this.chart1.TabIndex = 1;
             this.chart1.Text = "chart1";
@@ -253,7 +270,7 @@ namespace Geometric_Transformation
             // 
             this.TranslationRa.AutoSize = true;
             this.TranslationRa.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TranslationRa.Location = new System.Drawing.Point(9, 293);
+            this.TranslationRa.Location = new System.Drawing.Point(9, 307);
             this.TranslationRa.Name = "TranslationRa";
             this.TranslationRa.Size = new System.Drawing.Size(113, 22);
             this.TranslationRa.TabIndex = 6;
@@ -265,7 +282,7 @@ namespace Geometric_Transformation
             // 
             this.ScallingRa.AutoSize = true;
             this.ScallingRa.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ScallingRa.Location = new System.Drawing.Point(9, 360);
+            this.ScallingRa.Location = new System.Drawing.Point(9, 352);
             this.ScallingRa.Name = "ScallingRa";
             this.ScallingRa.Size = new System.Drawing.Size(84, 22);
             this.ScallingRa.TabIndex = 6;
@@ -277,7 +294,7 @@ namespace Geometric_Transformation
             // 
             this.RotationRa.AutoSize = true;
             this.RotationRa.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RotationRa.Location = new System.Drawing.Point(9, 429);
+            this.RotationRa.Location = new System.Drawing.Point(9, 510);
             this.RotationRa.Name = "RotationRa";
             this.RotationRa.Size = new System.Drawing.Size(93, 22);
             this.RotationRa.TabIndex = 6;
@@ -285,33 +302,35 @@ namespace Geometric_Transformation
             this.RotationRa.Text = "Rotation";
             this.RotationRa.UseVisualStyleBackColor = true;
             // 
-            // radioButton4
+            // ReflectioRa
             // 
-            this.radioButton4.AutoSize = true;
-            this.radioButton4.Location = new System.Drawing.Point(9, 550);
-            this.radioButton4.Name = "radioButton4";
-            this.radioButton4.Size = new System.Drawing.Size(92, 21);
-            this.radioButton4.TabIndex = 6;
-            this.radioButton4.TabStop = true;
-            this.radioButton4.Text = "Reflection";
-            this.radioButton4.UseVisualStyleBackColor = true;
+            this.ReflectioRa.AutoSize = true;
+            this.ReflectioRa.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ReflectioRa.Location = new System.Drawing.Point(9, 395);
+            this.ReflectioRa.Name = "ReflectioRa";
+            this.ReflectioRa.Size = new System.Drawing.Size(105, 22);
+            this.ReflectioRa.TabIndex = 6;
+            this.ReflectioRa.TabStop = true;
+            this.ReflectioRa.Text = "Reflection";
+            this.ReflectioRa.UseVisualStyleBackColor = true;
             // 
-            // radioButton5
+            // ShearingRa
             // 
-            this.radioButton5.AutoSize = true;
-            this.radioButton5.Location = new System.Drawing.Point(12, 602);
-            this.radioButton5.Name = "radioButton5";
-            this.radioButton5.Size = new System.Drawing.Size(86, 21);
-            this.radioButton5.TabIndex = 6;
-            this.radioButton5.TabStop = true;
-            this.radioButton5.Text = "Shearing";
-            this.radioButton5.UseVisualStyleBackColor = true;
+            this.ShearingRa.AutoSize = true;
+            this.ShearingRa.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ShearingRa.Location = new System.Drawing.Point(9, 442);
+            this.ShearingRa.Name = "ShearingRa";
+            this.ShearingRa.Size = new System.Drawing.Size(95, 22);
+            this.ShearingRa.TabIndex = 6;
+            this.ShearingRa.TabStop = true;
+            this.ShearingRa.Text = "Shearing";
+            this.ShearingRa.UseVisualStyleBackColor = true;
             // 
             // label8
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Arial", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(137, 293);
+            this.label8.Location = new System.Drawing.Point(137, 280);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(23, 22);
             this.label8.TabIndex = 2;
@@ -322,7 +341,7 @@ namespace Geometric_Transformation
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Arial", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(186, 293);
+            this.label9.Location = new System.Drawing.Point(183, 280);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(23, 22);
             this.label9.TabIndex = 2;
@@ -331,7 +350,7 @@ namespace Geometric_Transformation
             // 
             // Tx
             // 
-            this.Tx.Location = new System.Drawing.Point(134, 318);
+            this.Tx.Location = new System.Drawing.Point(134, 308);
             this.Tx.Name = "Tx";
             this.Tx.Size = new System.Drawing.Size(29, 22);
             this.Tx.TabIndex = 3;
@@ -339,7 +358,7 @@ namespace Geometric_Transformation
             // 
             // Ty
             // 
-            this.Ty.Location = new System.Drawing.Point(180, 318);
+            this.Ty.Location = new System.Drawing.Point(180, 308);
             this.Ty.Name = "Ty";
             this.Ty.Size = new System.Drawing.Size(29, 22);
             this.Ty.TabIndex = 3;
@@ -369,7 +388,7 @@ namespace Geometric_Transformation
             // 
             // Sx
             // 
-            this.Sx.Location = new System.Drawing.Point(134, 360);
+            this.Sx.Location = new System.Drawing.Point(134, 352);
             this.Sx.Name = "Sx";
             this.Sx.Size = new System.Drawing.Size(29, 22);
             this.Sx.TabIndex = 3;
@@ -377,7 +396,7 @@ namespace Geometric_Transformation
             // 
             // Sy
             // 
-            this.Sy.Location = new System.Drawing.Point(180, 360);
+            this.Sy.Location = new System.Drawing.Point(180, 352);
             this.Sy.Name = "Sy";
             this.Sy.Size = new System.Drawing.Size(29, 22);
             this.Sy.TabIndex = 3;
@@ -387,7 +406,7 @@ namespace Geometric_Transformation
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(143, 408);
+            this.label10.Location = new System.Drawing.Point(139, 488);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(53, 19);
             this.label10.TabIndex = 2;
@@ -396,21 +415,54 @@ namespace Geometric_Transformation
             // 
             // Angle
             // 
-            this.Angle.Location = new System.Drawing.Point(147, 430);
+            this.Angle.Location = new System.Drawing.Point(141, 511);
             this.Angle.Name = "Angle";
             this.Angle.Size = new System.Drawing.Size(46, 22);
             this.Angle.TabIndex = 3;
             this.Angle.TextChanged += new System.EventHandler(this.X1_TextChanged);
             // 
+            // RefX
+            // 
+            this.RefX.Location = new System.Drawing.Point(134, 395);
+            this.RefX.Name = "RefX";
+            this.RefX.Size = new System.Drawing.Size(29, 22);
+            this.RefX.TabIndex = 3;
+            this.RefX.TextChanged += new System.EventHandler(this.X1_TextChanged);
+            // 
+            // RefY
+            // 
+            this.RefY.Location = new System.Drawing.Point(180, 395);
+            this.RefY.Name = "RefY";
+            this.RefY.Size = new System.Drawing.Size(29, 22);
+            this.RefY.TabIndex = 3;
+            this.RefY.TextChanged += new System.EventHandler(this.Y1_TextChanged);
+            // 
+            // ShearingX
+            // 
+            this.ShearingX.Location = new System.Drawing.Point(134, 442);
+            this.ShearingX.Name = "ShearingX";
+            this.ShearingX.Size = new System.Drawing.Size(29, 22);
+            this.ShearingX.TabIndex = 3;
+            this.ShearingX.TextChanged += new System.EventHandler(this.X1_TextChanged);
+            // 
+            // ShearingY
+            // 
+            this.ShearingY.Location = new System.Drawing.Point(180, 442);
+            this.ShearingY.Name = "ShearingY";
+            this.ShearingY.Size = new System.Drawing.Size(29, 22);
+            this.ShearingY.TabIndex = 3;
+            this.ShearingY.TextChanged += new System.EventHandler(this.Y1_TextChanged);
+            // 
             // FormOf2d
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(1084, 668);
             this.Controls.Add(this.FinalClear);
             this.Controls.Add(this.FinalDraw);
-            this.Controls.Add(this.radioButton5);
-            this.Controls.Add(this.radioButton4);
+            this.Controls.Add(this.ShearingRa);
+            this.Controls.Add(this.ReflectioRa);
             this.Controls.Add(this.ScallingRa);
             this.Controls.Add(this.RotationRa);
             this.Controls.Add(this.TranslationRa);
@@ -418,10 +470,14 @@ namespace Geometric_Transformation
             this.Controls.Add(this.DrawButton1);
             this.Controls.Add(this.Y3);
             this.Controls.Add(this.Y2);
+            this.Controls.Add(this.ShearingY);
+            this.Controls.Add(this.RefY);
             this.Controls.Add(this.Sy);
             this.Controls.Add(this.Ty);
             this.Controls.Add(this.Y1);
+            this.Controls.Add(this.ShearingX);
             this.Controls.Add(this.X3);
+            this.Controls.Add(this.RefX);
             this.Controls.Add(this.X2);
             this.Controls.Add(this.Sx);
             this.Controls.Add(this.Angle);
@@ -467,8 +523,8 @@ namespace Geometric_Transformation
         private System.Windows.Forms.RadioButton TranslationRa;
         private System.Windows.Forms.RadioButton ScallingRa;
         private System.Windows.Forms.RadioButton RotationRa;
-        private System.Windows.Forms.RadioButton radioButton4;
-        private System.Windows.Forms.RadioButton radioButton5;
+        private System.Windows.Forms.RadioButton ReflectioRa;
+        private System.Windows.Forms.RadioButton ShearingRa;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox Tx;
@@ -479,5 +535,9 @@ namespace Geometric_Transformation
         private System.Windows.Forms.TextBox Sy;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.TextBox Angle;
+        private System.Windows.Forms.TextBox RefX;
+        private System.Windows.Forms.TextBox RefY;
+        private System.Windows.Forms.TextBox ShearingX;
+        private System.Windows.Forms.TextBox ShearingY;
     }
 }

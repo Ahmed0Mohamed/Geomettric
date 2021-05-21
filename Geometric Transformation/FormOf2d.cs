@@ -16,6 +16,8 @@ namespace Geometric_Transformation
         private double[,] Points = new double[3,2];
         private double[,] Translation;
         private double[] Scalling;
+        private double[] Reflection;
+        private double[] Shearing;
         private double angle;
         public FormOf2d()
         {
@@ -23,8 +25,8 @@ namespace Geometric_Transformation
             chart1.Titles.Add("2D Geometric Transformation");
             Translation = new double[3,3]{ {1,0,Dx},{0,1,Dy},{0,0,1 } };
             Scalling = new double[2];
-
-
+            Reflection = new double[2];
+            Shearing = new double[2];
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -75,13 +77,19 @@ namespace Geometric_Transformation
 
         private void button2_Click(object sender, EventArgs e)
         {
-            chart1.Series["TranslationSha"].Points.Clear();
-            chart1.Series["ScalingSha"].Points.Clear();
-            chart1.Series["RotationSha"].Points.Clear();
+            chart1.Series["TranslationShap"].Points.Clear();
+            chart1.Series["ScalingShap"].Points.Clear();
+            chart1.Series["RotationShap"].Points.Clear();
+            chart1.Series["ReflictionShap"].Points.Clear();
+            chart1.Series["ShearingShap"].Points.Clear();
             Tx.Text = "";
             Ty.Text = "";
             Sx.Text = "";
             Sy.Text = "";
+            Angle.Text = "";
+            ShearingX.Text = "";
+            ShearingY.Text = "";
+
 
         }
 
@@ -115,9 +123,9 @@ namespace Geometric_Transformation
                 {
                     Points[i, 0] += Translation[0, 2];
                     Points[i, 1] += Translation[1, 2];
-                    chart1.Series["TranslationSha"].Points.AddXY(Points[i, 0], Points[i, 1]);
+                    chart1.Series["TranslationShap"].Points.AddXY(Points[i, 0], Points[i, 1]);
                 }
-                chart1.Series["TranslationSha"].Points.AddXY(Points[0,0], Points[0, 1]);
+                chart1.Series["TranslationShap"].Points.AddXY(Points[0,0], Points[0, 1]);
             }
             if (ScallingRa.Checked == true)
             {
@@ -127,9 +135,9 @@ namespace Geometric_Transformation
                 {
                     Points[i, 0] *= Scalling[0];
                     Points[i, 1] *= Scalling[1];
-                    chart1.Series["ScalingSha"].Points.AddXY(Points[i, 0], Points[i, 1]);
+                    chart1.Series["ScalingShap"].Points.AddXY(Points[i, 0], Points[i, 1]);
                 }
-                chart1.Series["ScalingSha"].Points.AddXY(Points[0, 0], Points[0, 1]);
+                chart1.Series["ScalingShap"].Points.AddXY(Points[0, 0], Points[0, 1]);
             }
             if (RotationRa.Checked == true)
             {
@@ -140,13 +148,39 @@ namespace Geometric_Transformation
                     double y = Points[i, 1] ;
                     x = Points[i, 0] * Math.Cos(angle) - Points[i, 1] * Math.Sin(angle);
                     y = Points[i, 0] * Math.Sin(angle) + Points[i, 1] * Math.Cos(angle);
-                    chart1.Series["RotationSha"].Points.AddXY(x, y);
+                    chart1.Series["RotationShap"].Points.AddXY(x, y);
                     Points[i, 0] = x;
                     Points[i, 1] = y;
                 }
-                chart1.Series["RotationSha"].Points.AddXY(Points[0, 0], Points[0, 1]);
+                chart1.Series["RotationShap"].Points.AddXY(Points[0, 0], Points[0, 1]);
             }
-
+            if (ReflectioRa.Checked == true)
+            {
+                Reflection[0] = Convert.ToDouble(RefX.Text);
+                Reflection[1] = Convert.ToDouble(RefY.Text);
+                for (int i = 0; i < 3; i++)
+                {
+                    Points[i, 0] *= Reflection[0];
+                    Points[i, 1] *= Reflection[1];
+                    chart1.Series["ReflictionShap"].Points.AddXY(Points[i, 0], Points[i, 1]);
+                }
+                chart1.Series["ReflictionShap"].Points.AddXY(Points[0, 0], Points[0, 1]);
+            }
+            if (ShearingRa.Checked == true)
+            {
+                Shearing[0] = Convert.ToDouble(ShearingX.Text);
+                Shearing[1] = Convert.ToDouble(ShearingY.Text);
+                for (int i = 0; i < 3; i++)
+                {
+                    Points[i, 0] += Shearing[0]* Points[i, 1];
+                    Points[i, 1] += Shearing[1]* Points[i, 0];
+                    chart1.Series["ShearingShap"].Points.AddXY(Points[i, 0], Points[i, 1]);
+                }
+                chart1.Series["ShearingShap"].Points.AddXY(Points[0, 0], Points[0, 1]);
+            }
         }
     }
 }
+
+
+//ShearingShap
