@@ -75,7 +75,9 @@ namespace Geometric_Transformation
 
         private void button2_Click(object sender, EventArgs e)
         {
-            chart1.Series["Shape2"].Points.Clear();
+            chart1.Series["TranslationSha"].Points.Clear();
+            chart1.Series["ScalingSha"].Points.Clear();
+            chart1.Series["RotationSha"].Points.Clear();
             Tx.Text = "";
             Ty.Text = "";
             Sx.Text = "";
@@ -113,9 +115,9 @@ namespace Geometric_Transformation
                 {
                     Points[i, 0] += Translation[0, 2];
                     Points[i, 1] += Translation[1, 2];
-                    chart1.Series["Shape2"].Points.AddXY(Points[i, 0], Points[i, 1]);
+                    chart1.Series["TranslationSha"].Points.AddXY(Points[i, 0], Points[i, 1]);
                 }
-                chart1.Series["Shape2"].Points.AddXY(Points[0,0], Points[0, 1]);
+                chart1.Series["TranslationSha"].Points.AddXY(Points[0,0], Points[0, 1]);
             }
             if (ScallingRa.Checked == true)
             {
@@ -125,9 +127,9 @@ namespace Geometric_Transformation
                 {
                     Points[i, 0] *= Scalling[0];
                     Points[i, 1] *= Scalling[1];
-                    chart1.Series["Shape2"].Points.AddXY(Points[i, 0], Points[i, 1]);
+                    chart1.Series["ScalingSha"].Points.AddXY(Points[i, 0], Points[i, 1]);
                 }
-                chart1.Series["Shape2"].Points.AddXY(Points[0, 0], Points[0, 1]);
+                chart1.Series["ScalingSha"].Points.AddXY(Points[0, 0], Points[0, 1]);
             }
             if (RotationRa.Checked == true)
             {
@@ -138,11 +140,11 @@ namespace Geometric_Transformation
                     double y = Points[i, 1] ;
                     x = Points[i, 0] * Math.Cos(angle) - Points[i, 1] * Math.Sin(angle);
                     y = Points[i, 0] * Math.Sin(angle) + Points[i, 1] * Math.Cos(angle);
-                    chart1.Series["Shape2"].Points.AddXY(x, y);
+                    chart1.Series["RotationSha"].Points.AddXY(x, y);
                     Points[i, 0] = x;
                     Points[i, 1] = y;
                 }
-                chart1.Series["Shape2"].Points.AddXY(Points[0, 0], Points[0, 1]);
+                chart1.Series["RotationSha"].Points.AddXY(Points[0, 0], Points[0, 1]);
             }
 
         }
